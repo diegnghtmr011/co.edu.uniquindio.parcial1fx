@@ -10,6 +10,7 @@ import co.edu.uniquindio.parcial1fx.parcial1.model.Propietario;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Usuario;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Vehiculo;
 import co.edu.uniquindio.parcial1fx.parcial1.model.VehiculoTransporte;
+import co.edu.uniquindio.parcial1fx.parcial1.util.AssertionUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -200,11 +201,26 @@ public class EmpresaTransporteController {
         } else {
             mensaje = "No se pudo crear el propietario. " +
                     "Es posible que ya exista un propietario con la misma cédula.";
-            return mensaje;
         }
+        return mensaje;
     }
 
     private void agregarPropietario() {
+        AssertionUtil.assertion(txtNombrePropietario.getText() != null &&
+                        !txtNombrePropietario.getText().isBlank(),
+                "El nombre del propietario no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtCedulaPropietario.getText() != null &&
+                        !txtCedulaPropietario.getText().isBlank(),
+                "La cédula del propietario no puede ser nula o vacía");
+        AssertionUtil.assertion(txtEmailPropietario.getText() != null &&
+                        !txtEmailPropietario.getText().isBlank(),
+                "El email del propietario no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtCelularPropietario.getText() != null &&
+                        !txtCelularPropietario.getText().isBlank(),
+                "El celular del propietario no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtPlacaVehiculoPrincipalPropietario.getText() != null &&
+                        !txtPlacaVehiculoPrincipalPropietario.getText().isBlank(),
+                "La placa del vehículo principal del propietario no puede ser nula o vacía");
 
         Vehiculo vehiculo = modelFactory.buscarVehiculo
                 (txtPlacaVehiculoPrincipalPropietario.getText());
@@ -256,6 +272,19 @@ public class EmpresaTransporteController {
     }
 
     private void agregarUsuario() {
+        AssertionUtil.assertion(txtNombreUsuario.getText() != null &&
+                        !txtNombreUsuario.getText().isBlank(),
+                "El nombre del usuario no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtIDUsuario.getText() != null &&
+                        !txtIDUsuario.getText().isBlank(),
+                "La ID del usuario no puede ser nula o vacía");
+        AssertionUtil.assertion(txtEdadUsuario.getText() != null &&
+                        !txtEdadUsuario.getText().isBlank(),
+                "La edad del usuario no puede ser nula o vacía");
+        AssertionUtil.assertion(txtPlacaVehiculoUsuario.getText() != null &&
+                        !txtPlacaVehiculoUsuario.getText().isBlank(),
+                "La placa del vehículo asociado del usuario no puede ser nula o vacía");
+
         VehiculoTransporte vehiculoAsociado = modelFactory.buscarVehiculoTransporte
                 (txtPlacaVehiculoUsuario.getText());
 
@@ -301,11 +330,33 @@ public class EmpresaTransporteController {
         } else {
             mensaje = "No se pudo crear el vehículo de carga. " +
                     "Es posible que ya exista un vehículo con la misma placa.";
-            return mensaje;
         }
+        return mensaje;
     }
 
     private void agregarVehiculoCarga() {
+        AssertionUtil.assertion(txtPlacaVehiculoCarga.getText() != null &&
+                        !txtPlacaVehiculoCarga.getText().isBlank(),
+                "La placa del vehículo de carga no puede ser nula o vacía");
+        AssertionUtil.assertion(txtModeloVehiculoCarga.getText() != null &&
+                        !txtModeloVehiculoCarga.getText().isBlank(),
+                "El modelo del vehículo de carga no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtMarcaVehiculoCarga.getText() != null &&
+                        !txtMarcaVehiculoCarga.getText().isBlank(),
+                "La marca del vehículo de carga no puede ser nula o vacía");
+        AssertionUtil.assertion(txtColorVehiculoCarga.getText() != null &&
+                        !txtColorVehiculoCarga.getText().isBlank(),
+                "El color del vehículo de carga no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtCedulaPropietarioVehiculoCarga.getText() != null &&
+                        !txtCedulaPropietarioVehiculoCarga.getText().isBlank(),
+                "La cédula del propietario del vehículo de carga no puede ser nula o vacía");
+        AssertionUtil.assertion(txtCapacidadCargaVehiculoCarga.getText() != null &&
+                        !txtCapacidadCargaVehiculoCarga.getText().isBlank(),
+                "La capacidad de carga del vehículo de carga no puede ser nula o vacía");
+        AssertionUtil.assertion(txtNumeroEjesVehiculoCarga.getText() != null &&
+                        !txtNumeroEjesVehiculoCarga.getText().isBlank(),
+                "El número de ejes del vehículo de carga no puede ser nulo o vacío");
+
         Propietario propietario = modelFactory.buscarPropietario
                 (txtCedulaPropietarioVehiculoCarga.getText());
 
@@ -355,11 +406,30 @@ public class EmpresaTransporteController {
         } else {
             mensaje = "No se pudo crear el vehículo de transporte. " +
                     "Es posible que ya exista un vehículo con la misma placa.";
-            return mensaje;
         }
+        return mensaje;
     }
 
     private void agregarVehiculoTransporte() {
+        AssertionUtil.assertion(txtPlacaVehiculoTransporte.getText() != null &&
+                        !txtPlacaVehiculoTransporte.getText().isBlank(),
+                "La placa del vehículo de transporte no puede ser nula o vacía");
+        AssertionUtil.assertion(txtModeloVehiculoTransporte.getText() != null &&
+                        !txtModeloVehiculoTransporte.getText().isBlank(),
+                "El modelo del vehículo de transporte no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtMarcaVehiculoTransporte.getText() != null &&
+                        !txtMarcaVehiculoTransporte.getText().isBlank(),
+                "La marca del vehículo de transporte no puede ser nula o vacía");
+        AssertionUtil.assertion(txtColorVehiculoTransporte.getText() != null &&
+                        !txtColorVehiculoTransporte.getText().isBlank(),
+                "El color del vehículo de transporte no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtCedulaPropietarioVehiculoTransporte.getText() != null &&
+                        !txtCedulaPropietarioVehiculoTransporte.getText().isBlank(),
+                "La cédula del propietario del vehículo de transporte no puede ser nula o vacía");
+        AssertionUtil.assertion(txtNumeroMaxPasajerosVehiculoTransporte.getText() != null &&
+                        !txtNumeroMaxPasajerosVehiculoTransporte.getText().isBlank(),
+                "El número máximo de pasajeros del vehículo de transporte no puede ser nulo o vacío");
+
         Propietario propietario = modelFactory.buscarPropietario
                 (txtCedulaPropietarioVehiculoTransporte.getText());
 
@@ -405,10 +475,14 @@ public class EmpresaTransporteController {
 
     private void obtenerMayoresEdad() {
         long mayoresEdad = modelFactory.obtenerMayoresEdad();
-        txtResultadoInicio.setText("Mayores de edad: " + mayoresEdad);
+        txtResultadoInicio.setText("Usuarios mayores de edad: " + mayoresEdad);
     }
 
     private void obtenerNumeroUsuariosPlaca() {
+        AssertionUtil.assertion(txtPlacaObtenerNumeroUsuariosPlacaInicio.getText() != null &&
+                        !txtPlacaObtenerNumeroUsuariosPlacaInicio.getText().isBlank(),
+                "La placa del vehículo no puede ser nula o vacía");
+
         int numeroUsuarios = modelFactory.obtenerNumeroUsuariosPlaca
                 (txtPlacaObtenerNumeroUsuariosPlacaInicio.getText());
         txtResultadoInicio.setText("El vehiculo identificado con la placa " +
@@ -418,4 +492,3 @@ public class EmpresaTransporteController {
                 " usuarios.");
     }
 }
-
