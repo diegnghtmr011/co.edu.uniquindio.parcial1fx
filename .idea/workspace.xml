@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/controller/EmpresaTransporteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/controller/EmpresaTransporteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/factory/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/factory/ModelFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/model/EmpresaTransporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/model/EmpresaTransporte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/parcial1fx/parcial1/EmpresaTransporte.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/parcial1fx/parcial1/EmpresaTransporte.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,7 @@
       <workItem from="1710360975123" duration="7483000" />
       <workItem from="1710375419610" duration="5439000" />
       <workItem from="1710423441112" duration="7910000" />
-      <workItem from="1710432420944" duration="2951000" />
+      <workItem from="1710432420944" duration="5505000" />
     </task>
     <servers />
   </component>

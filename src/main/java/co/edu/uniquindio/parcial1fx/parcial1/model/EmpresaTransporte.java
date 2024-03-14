@@ -257,4 +257,25 @@ public class EmpresaTransporte {
                 .orElse(null);
     }
 
+    public int calcularPasajerosTransportados() {
+        return getListaVehiculosTransporte().stream()
+                .mapToInt(vehiculoTransporte -> vehiculoTransporte.getListaUsuariosAsociados().size())
+                .sum();
+    }
+
+    public int obtenerNumeroUsuariosPlaca(String placa) {
+        return getListaVehiculosTransporte().stream()
+                .filter(vehiculoTransporte -> vehiculoTransporte
+                        .getPlaca().equalsIgnoreCase(placa))
+                .mapToInt(vehiculoTransporte -> vehiculoTransporte
+                        .getListaUsuariosAsociados().size())
+                .sum();
+    }
+
+    public long obtenerMayoresEdad() {
+        return getListaUsuarios().stream()
+                .mapToInt(Usuario::getEdad)
+                .filter(edad -> edad >= 18)
+                .count();
+    }
 }

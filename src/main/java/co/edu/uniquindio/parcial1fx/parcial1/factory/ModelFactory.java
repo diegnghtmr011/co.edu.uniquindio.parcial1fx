@@ -72,7 +72,7 @@ public class ModelFactory {
         Usuario usuario05 = new UsuarioBuilder()
                 .setNombre("Eduardo")
                 .setID("246810121")
-                .setEdad(50)
+                .setEdad(15)
                 .build();
 
         Usuario usuario06 = new UsuarioBuilder()
@@ -84,7 +84,7 @@ public class ModelFactory {
         Usuario usuario07 = new UsuarioBuilder()
                 .setNombre("Gustavo")
                 .setID("579135791")
-                .setEdad(30)
+                .setEdad(11)
                 .build();
 
         Usuario usuario08 = new UsuarioBuilder()
@@ -160,6 +160,24 @@ public class ModelFactory {
         vehiculoTransporte03.agregarUsuarioAsociado(usuario08);
         vehiculoTransporte03.agregarUsuarioAsociado(usuario09);
 
+        empresaTransporte.agregarVehiculoTransporte(vehiculoTransporte01);
+        empresaTransporte.agregarVehiculoTransporte(vehiculoTransporte02);
+        empresaTransporte.agregarVehiculoTransporte(vehiculoTransporte03);
+        empresaTransporte.agregarVehiculoCarga(vehiculoCarga01);
+        empresaTransporte.agregarVehiculoCarga(vehiculoCarga02);
+        empresaTransporte.agregarVehiculoCarga(vehiculoCarga03);
+        empresaTransporte.agregarPropietario(propietario01);
+        empresaTransporte.agregarPropietario(propietario02);
+        empresaTransporte.agregarPropietario(propietario03);
+        empresaTransporte.agregarUsuario(usuario01);
+        empresaTransporte.agregarUsuario(usuario02);
+        empresaTransporte.agregarUsuario(usuario03);
+        empresaTransporte.agregarUsuario(usuario04);
+        empresaTransporte.agregarUsuario(usuario05);
+        empresaTransporte.agregarUsuario(usuario06);
+        empresaTransporte.agregarUsuario(usuario07);
+        empresaTransporte.agregarUsuario(usuario08);
+        empresaTransporte.agregarUsuario(usuario09);
     }
 
     public boolean crearPropietario(String nombre, String cedula,
@@ -212,5 +230,17 @@ public class ModelFactory {
 
     public Usuario buscarUsuario(String ID) {
         return empresaTransporte.obtenerUsuario(ID);
+    }
+
+    public int calcularPasajerosTransportados() {
+        return empresaTransporte.calcularPasajerosTransportados();
+    }
+
+    public int obtenerNumeroUsuariosPlaca(String placa) {
+        return empresaTransporte.obtenerNumeroUsuariosPlaca(placa);
+    }
+
+    public long obtenerMayoresEdad() {
+        return empresaTransporte.obtenerMayoresEdad();
     }
 }

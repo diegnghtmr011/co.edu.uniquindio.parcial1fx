@@ -166,17 +166,17 @@ public class EmpresaTransporteController {
 
     @FXML
     void onCalcularPasajerosTransportados(ActionEvent event) {
-
+        calcularPasajerosTransportados();
     }
 
     @FXML
     void onObtenerMayoresEdad(ActionEvent event) {
-
+        obtenerMayoresEdad();
     }
 
     @FXML
     void onObtenerNumeroUsuariosPlaca(ActionEvent event) {
-
+        obtenerNumeroUsuariosPlaca();
     }
 
     @FXML
@@ -396,6 +396,26 @@ public class EmpresaTransporteController {
         }
 
         alert.showAndWait();
+    }
+
+    private void calcularPasajerosTransportados() {
+        int pasajerosTransportados = modelFactory.calcularPasajerosTransportados();
+        txtResultadoInicio.setText("Pasajeros transportados: " + pasajerosTransportados);
+    }
+
+    private void obtenerMayoresEdad() {
+        long mayoresEdad = modelFactory.obtenerMayoresEdad();
+        txtResultadoInicio.setText("Mayores de edad: " + mayoresEdad);
+    }
+
+    private void obtenerNumeroUsuariosPlaca() {
+        int numeroUsuarios = modelFactory.obtenerNumeroUsuariosPlaca
+                (txtPlacaObtenerNumeroUsuariosPlacaInicio.getText());
+        txtResultadoInicio.setText("El vehiculo identificado con la placa " +
+                txtPlacaObtenerNumeroUsuariosPlacaInicio.getText() +
+                " tiene " +
+                numeroUsuarios +
+                " usuarios.");
     }
 }
 
