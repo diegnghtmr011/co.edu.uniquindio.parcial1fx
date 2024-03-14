@@ -162,7 +162,20 @@ public class EmpresaTransporteController {
 
     @FXML
     void onAgregarVehiculoTransporte(ActionEvent event) {
-        agregarVehiculoTransporte();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Creación de Vehiculo Transporte");
+        alert.setHeaderText(null);
+        System.out.println("Hola Mundo");
+        try {
+            agregarVehiculoTransporte();
+            System.out.println("Creado con exito :D");
+            //alert.setContentText("Se agrego con exito");
+        }
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+
+            // alert.setContentText(e.getMessage());
+        }
     }
 
     @FXML
@@ -455,17 +468,20 @@ public class EmpresaTransporteController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Creación de Vehículo de Transporte");
 
-        if (vehiculoTransporteCreado) {
-            String mensaje = "Vehículo de Transporte creado exitosamente: "
-                    +txtPlacaVehiculoTransporte.getText();
-            alert.setHeaderText(null);
-            alert.setContentText(mensaje);
-        } else {
-            alert.setHeaderText(null);
-            alert.setContentText("No se pudo crear el vehículo de transporte.");
-        }
+        AssertionUtil.assertion(vehiculoTransporteCreado,
+                "No se pudo crear el vehículo de transporte");
 
-        alert.showAndWait();
+//        if (vehiculoTransporteCreado) {
+//            String mensaje = "Vehículo de Transporte creado exitosamente: "
+//                    +txtPlacaVehiculoTransporte.getText();
+//            alert.setHeaderText(null);
+//            alert.setContentText(mensaje);
+//        } else {
+//            alert.setHeaderText(null);
+//            alert.setContentText("No se pudo crear el vehículo de transporte.");
+//        }
+//
+//        alert.showAndWait();
     }
 
     private void calcularPasajerosTransportados() {
