@@ -63,6 +63,42 @@ public class ModelFactory {
                 .setEdad(60)
                 .build();
 
+        Usuario usuario04 = new UsuarioBuilder()
+                .setNombre("Diana")
+                .setID("987654321")
+                .setEdad(40)
+                .build();
+
+        Usuario usuario05 = new UsuarioBuilder()
+                .setNombre("Eduardo")
+                .setID("246810121")
+                .setEdad(50)
+                .build();
+
+        Usuario usuario06 = new UsuarioBuilder()
+                .setNombre("Fernanda")
+                .setID("135791357")
+                .setEdad(35)
+                .build();
+
+        Usuario usuario07 = new UsuarioBuilder()
+                .setNombre("Gustavo")
+                .setID("579135791")
+                .setEdad(30)
+                .build();
+
+        Usuario usuario08 = new UsuarioBuilder()
+                .setNombre("Hernando")
+                .setID("357913579")
+                .setEdad(25)
+                .build();
+
+        Usuario usuario09 = new UsuarioBuilder()
+                .setNombre("Isabel")
+                .setID("791357913")
+                .setEdad(20)
+                .build();
+
         VehiculoCarga vehiculoCarga01 = new VehiculoCargaBuilder()
                 .setPlaca("XYZ987")
                 .setModelo("2015")
@@ -114,6 +150,16 @@ public class ModelFactory {
                 .setNumeroMaxPasajeros(50)
                 .build();
 
+        vehiculoTransporte01.agregarUsuarioAsociado(usuario01);
+        vehiculoTransporte01.agregarUsuarioAsociado(usuario02);
+        vehiculoTransporte01.agregarUsuarioAsociado(usuario03);
+        vehiculoTransporte02.agregarUsuarioAsociado(usuario04);
+        vehiculoTransporte02.agregarUsuarioAsociado(usuario05);
+        vehiculoTransporte02.agregarUsuarioAsociado(usuario06);
+        vehiculoTransporte03.agregarUsuarioAsociado(usuario07);
+        vehiculoTransporte03.agregarUsuarioAsociado(usuario08);
+        vehiculoTransporte03.agregarUsuarioAsociado(usuario09);
+
     }
 
     public boolean crearPropietario(String nombre, String cedula,
@@ -158,5 +204,13 @@ public class ModelFactory {
 
     public VehiculoTransporte buscarVehiculoTransporte(String placa) {
         return empresaTransporte.obtenerVehiculoTransporte(placa);
+    }
+
+    public Propietario buscarPropietario(String cedula) {
+        return empresaTransporte.obtenerPropietario(cedula);
+    }
+
+    public Usuario buscarUsuario(String ID) {
+        return empresaTransporte.obtenerUsuario(ID);
     }
 }

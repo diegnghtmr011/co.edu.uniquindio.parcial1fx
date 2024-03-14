@@ -81,7 +81,7 @@ public class EmpresaTransporte {
         this.listaUsuarios.remove(usuario);
     }
 
-    private Propietario obtenerPropietario(String cedula) {
+    public Propietario obtenerPropietario(String cedula) {
         return getListaPropietarios().stream()
                 .filter(propietario -> propietario.getCedula().equalsIgnoreCase(cedula))
                 .findFirst()
@@ -119,7 +119,7 @@ public class EmpresaTransporte {
         }
     }
 
-    private Usuario obtenerUsuario(String ID) {
+    public Usuario obtenerUsuario(String ID) {
         return getListaUsuarios().stream()
                 .filter(propietario -> propietario.getID()
                         .equalsIgnoreCase(ID))

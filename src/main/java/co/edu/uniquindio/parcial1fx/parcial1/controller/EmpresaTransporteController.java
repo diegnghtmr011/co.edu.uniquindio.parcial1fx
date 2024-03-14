@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.parcial1fx.parcial1.factory.ModelFactory;
+import co.edu.uniquindio.parcial1fx.parcial1.model.Propietario;
+import co.edu.uniquindio.parcial1fx.parcial1.model.Usuario;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Vehiculo;
 import co.edu.uniquindio.parcial1fx.parcial1.model.VehiculoTransporte;
 import javafx.event.ActionEvent;
@@ -65,7 +67,7 @@ public class EmpresaTransporteController {
     private TextField txtCedulaPropietarioVehiculoTransporte;
 
     @FXML
-    private TextField txtCedulaUsuariosVehiculoTransporte;
+    private TextField txtIDUsuariosVehiculoTransporte;
 
     @FXML
     private TextField txtCelularPropietario;
@@ -154,12 +156,12 @@ public class EmpresaTransporteController {
 
     @FXML
     void onAgregarVehiculoCarga(ActionEvent event) {
-
+        agregarVehiculoCarga();
     }
 
     @FXML
     void onAgregarVehiculoTransporte(ActionEvent event) {
-
+        agregarVehiculoTransporte();
     }
 
     @FXML
@@ -207,8 +209,8 @@ public class EmpresaTransporteController {
         Vehiculo vehiculo = modelFactory.buscarVehiculo
                 (txtPlacaVehiculoPrincipalPropietario.getText());
 
-        Collection<Vehiculo> vehiculoAsociado = new LinkedList<>();
-        vehiculoAsociado.add(modelFactory.buscarVehiculo
+        Collection<Vehiculo> vehiculosAsociados = new LinkedList<>();
+        vehiculosAsociados.add(modelFactory.buscarVehiculo
                 (txtPlacaVehiculosAsociadosPropietario.getText()));
 
 
@@ -216,7 +218,7 @@ public class EmpresaTransporteController {
                 (txtNombrePropietario.getText(), txtCedulaPropietario.getText(),
                         txtEmailPropietario.getText(),
                         txtCelularPropietario.getText(),
-                        vehiculo, vehiculoAsociado);
+                        vehiculo, vehiculosAsociados);
 
         txtResultadoPropietario.setText
                 (construirMensajeDetallesPropietario(propietarioCreado));
@@ -283,7 +285,117 @@ public class EmpresaTransporteController {
         alert.showAndWait();
     }
 
+    private String construirMensajeDetallesVehiculoCarga(boolean vehiculoCargaCreado) {
+        String mensaje = "";
+        if (vehiculoCargaCreado) {
+            mensaje = "Vehículo de Carga creado exitosamente. Detalles:\n" +
+                    "Placa: " + txtPlacaVehiculoCarga.getText().trim() + "\n" +
+                    "Modelo: " + txtModeloVehiculoCarga.getText().trim() + "\n" +
+                    "Marca: " + txtMarcaVehiculoCarga.getText().trim() + "\n" +
+                    "Color: " + txtColorVehiculoCarga.getText().trim() + "\n" +
+                    "Capacidad de Carga: " + txtCapacidadCargaVehiculoCarga.getText().trim() + "\n" +
+                    "Número de Ejes: " + txtNumeroEjesVehiculoCarga.getText().trim() + "\n" +
+                    "Cédula Propietario: " + txtCedulaPropietarioVehiculoCarga.getText().trim() + "\n" +
+                    "Cédulas de Propietarios Asociados: " + txtCedulaAsociadosVehiculoCarga.getText().trim();
+            return mensaje;
+        } else {
+            mensaje = "No se pudo crear el vehículo de carga. " +
+                    "Es posible que ya exista un vehículo con la misma placa.";
+            return mensaje;
+        }
+    }
 
+    private void agregarVehiculoCarga() {
+        Propietario propietario = modelFactory.buscarPropietario
+                (txtCedulaPropietarioVehiculoCarga.getText());
 
+        Collection<Propietario> propietariosAsociados = new LinkedList<>();
+        propietariosAsociados.add(modelFactory.buscarPropietario
+                (txtCedulaAsociadosVehiculoCarga.getText()));
+
+        boolean vehiculoCargaCreado = modelFactory.crearVehiculoCarga
+                (txtPlacaVehiculoCarga.getText(), txtModeloVehiculoCarga.getText(),
+                        txtMarcaVehiculoCarga.getText(), txtColorVehiculoCarga.getText(),
+                        propietario, propietariosAsociados,
+                        Double.parseDouble(txtCapacidadCargaVehiculoCarga.getText()),
+                        Integer.parseInt(txtNumeroEjesVehiculoCarga.getText()));
+
+        txtResultadoVehiculoCarga.setText
+                (construirMensajeDetallesVehiculoCarga(vehiculoCargaCreado));
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Creación de Vehículo de Carga");
+
+        if (vehiculoCargaCreado) {
+            String mensaje = "Vehículo de Carga creado exitosamente: "
+                    +txtPlacaVehiculoCarga.getText();
+            alert.setHeaderText(null);
+            alert.setContentText(mensaje);
+        } else {
+            alert.setHeaderText(null);
+            alert.setContentText("No se pudo crear el vehículo de carga.");
+        }
+
+        alert.showAndWait();
+    }
+
+    private String construirMensajeDetallesVehiculoTransporte(boolean vehiculoTransporteCreado) {
+        String mensaje = "";
+        if (vehiculoTransporteCreado) {
+            mensaje = "Vehículo de Transporte creado exitosamente. Detalles:\n" +
+                    "Placa: " + txtPlacaVehiculoTransporte.getText().trim() + "\n" +
+                    "Modelo: " + txtModeloVehiculoTransporte.getText().trim() + "\n" +
+                    "Marca: " + txtMarcaVehiculoTransporte.getText().trim() + "\n" +
+                    "Color: " + txtColorVehiculoTransporte.getText().trim() + "\n" +
+                    "Cédula Propietario: " + txtCedulaPropietarioVehiculoTransporte.getText().trim() + "\n" +
+                    "Cédulas de Propietarios Asociados: " + txtCedulaAsociadosVehiculoTransporte.getText().trim() + "\n" +
+                    "ID Usuarios Asociados: " + txtIDUsuariosVehiculoTransporte.getText().trim() + "\n" +
+                    "Número Máximo de Pasajeros: " + txtNumeroMaxPasajerosVehiculoTransporte.getText().trim();
+            return mensaje;
+        } else {
+            mensaje = "No se pudo crear el vehículo de transporte. " +
+                    "Es posible que ya exista un vehículo con la misma placa.";
+            return mensaje;
+        }
+    }
+
+    private void agregarVehiculoTransporte() {
+        Propietario propietario = modelFactory.buscarPropietario
+                (txtCedulaPropietarioVehiculoTransporte.getText());
+
+        Collection<Propietario> propietariosAsociados = new LinkedList<>();
+        propietariosAsociados.add(modelFactory.buscarPropietario
+                (txtCedulaAsociadosVehiculoTransporte.getText()));
+
+        Collection<Usuario> usuariosAsociados = new LinkedList<>();
+        usuariosAsociados.add(modelFactory.buscarUsuario
+                (txtIDUsuariosVehiculoTransporte.getText()));
+
+        boolean vehiculoTransporteCreado = modelFactory.crearVehiculoTransporte
+                (txtPlacaVehiculoTransporte.getText(), txtModeloVehiculoTransporte.getText(),
+                        txtMarcaVehiculoTransporte.getText(),
+                        txtColorVehiculoTransporte.getText(), propietario,
+                        propietariosAsociados,
+                        Integer.parseInt(txtNumeroMaxPasajerosVehiculoTransporte.getText()),
+                        usuariosAsociados);
+
+        txtResultadoVehiculoTransporte.setText
+                (construirMensajeDetallesVehiculoTransporte(vehiculoTransporteCreado));
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Creación de Vehículo de Transporte");
+
+        if (vehiculoTransporteCreado) {
+            String mensaje = "Vehículo de Transporte creado exitosamente: "
+                    +txtPlacaVehiculoTransporte.getText();
+            alert.setHeaderText(null);
+            alert.setContentText(mensaje);
+        } else {
+            alert.setHeaderText(null);
+            alert.setContentText("No se pudo crear el vehículo de transporte.");
+        }
+
+        alert.showAndWait();
+    }
 }
 

@@ -166,7 +166,7 @@
                                     </TextField>
                                     <TextField fx:id="txtNumeroMaxPasajerosVehiculoTransporte" layoutX="437.0" layoutY="148.0" prefHeight="25.0" prefWidth="138.0" promptText="Ingrese el numero" />
                                     <TextField fx:id="txtCedulaAsociadosVehiculoTransporte" layoutX="146.0" layoutY="189.0" prefHeight="25.0" prefWidth="429.0" promptText="Ingrese la cedula de los asociados" />
-                                    <TextField fx:id="txtCedulaUsuariosVehiculoTransporte" layoutX="146.0" layoutY="226.0" prefHeight="25.0" prefWidth="428.0" promptText="Ingrese la cedula de los usuarios" />
+                                    <TextField fx:id="txtIDUsuariosVehiculoTransporte" layoutX="146.0" layoutY="226.0" prefHeight="25.0" prefWidth="428.0" promptText="Ingrese la cedula de los usuarios" />
                                     <Separator layoutY="279.0" prefHeight="1.0" prefWidth="602.0" />
                                     <Button fx:id="btnAgregarVehiculoTransporte" layoutX="216.0" layoutY="298.0" mnemonicParsing="false" onAction="#onAgregarVehiculoTransporte" text="Agregar Vehiculo Transporte" />
                                  </children>
