@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ef4adae4-6d62-428c-99cd-e995d16be0a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/EmpresaTransporteApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/EmpresaTransporteApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/controller/EmpresaTransporteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/controller/EmpresaTransporteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/factory/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/factory/ModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/model/builder/VehiculoCargaBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/model/builder/VehiculoCargaBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/model/EmpresaTransporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/parcial1fx/parcial1/model/EmpresaTransporte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,24 +46,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.EmpresaTransporteApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;origin/develop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/OneDrive/Documentos/Programacion2/Repositorios/co.edu.uniquindio.parcial1fx/src/main/java/co/edu/uniquindio/parcial1fx/parcial1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.EmpresaTransporteApplication.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "origin/develop",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Lenovo/OneDrive/Documentos/Programacion2/Repositorios/co.edu.uniquindio.parcial1fx/src/main/java/co/edu/uniquindio/parcial1fx/parcial1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Lenovo\OneDrive\Documentos\Programacion2\Repositorios\co.edu.uniquindio.parcial1fx\src\main\java\co\edu\uniquindio\parcial1fx\parcial1" />
@@ -104,7 +107,8 @@
       <workItem from="1710304152314" duration="2253000" />
       <workItem from="1710357913102" duration="3017000" />
       <workItem from="1710360975123" duration="7483000" />
-      <workItem from="1710375419610" duration="5078000" />
+      <workItem from="1710375419610" duration="5439000" />
+      <workItem from="1710423441112" duration="7127000" />
     </task>
     <servers />
   </component>

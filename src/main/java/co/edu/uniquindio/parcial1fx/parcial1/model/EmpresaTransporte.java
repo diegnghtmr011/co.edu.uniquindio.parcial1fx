@@ -8,6 +8,7 @@ import co.edu.uniquindio.parcial1fx.parcial1.model.builder.VehiculoTransporteBui
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.stream.Stream;
 
 public class EmpresaTransporte {
     private String nombre;
@@ -151,7 +152,7 @@ public class EmpresaTransporte {
         }
     }
 
-    private VehiculoCarga obtenerVehiculoCarga(String placa) {
+    public VehiculoCarga obtenerVehiculoCarga(String placa) {
         return getListaVehiculosCarga().stream()
                 .filter(vehiculoCarga -> vehiculoCarga.getPlaca()
                         .equalsIgnoreCase(placa))
@@ -196,7 +197,7 @@ public class EmpresaTransporte {
         }
     }
 
-    private VehiculoTransporte obtenerVehiculoTransporte(String placa) {
+    public VehiculoTransporte obtenerVehiculoTransporte(String placa) {
         return getListaVehiculosTransporte().stream()
                 .filter(vehiculoTransporte -> vehiculoTransporte.getPlaca()
                         .equalsIgnoreCase(placa))
@@ -243,5 +244,17 @@ public class EmpresaTransporte {
         }
     }
 
+    public Vehiculo obtenerVehiculo(String placa) {
+        Stream<Vehiculo> streamVehiculosCarga = listaVehiculosCarga.stream().map(vc -> (Vehiculo) vc);
+
+        Stream<Vehiculo> streamVehiculosTransporte = listaVehiculosTransporte.stream().map(vt -> (Vehiculo) vt);
+
+        Stream<Vehiculo> streamTodosVehiculos = Stream.concat(streamVehiculosCarga, streamVehiculosTransporte);
+
+        return streamTodosVehiculos
+                .filter(vehiculo -> vehiculo.getPlaca().equalsIgnoreCase(placa))
+                .findFirst()
+                .orElse(null);
+    }
 
 }

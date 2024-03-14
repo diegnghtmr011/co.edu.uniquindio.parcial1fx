@@ -151,4 +151,12 @@ public class ModelFactory {
                 color, propietarioAsociado, listaPropietariosAsociados,
                 numeroMaxPasajeros, listaUsuariosAsociados);
     }
+
+    public Vehiculo buscarVehiculo(String placa) {
+        return empresaTransporte.obtenerVehiculo(placa);
+    }
+
+    public VehiculoTransporte buscarVehiculoTransporte(String placa) {
+        return empresaTransporte.obtenerVehiculoTransporte(placa);
+    }
 }
