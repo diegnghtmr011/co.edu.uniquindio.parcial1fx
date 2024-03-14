@@ -8,7 +8,8 @@ public class VehiculoCargaBuilder extends VehiculoBuilder<VehiculoCargaBuilder, 
 
     @Override
     public VehiculoCarga build() {
-        return new VehiculoCarga(placa, modelo, marca, color, propietarioAsociado, listaPropietariosAsociados, capacidadCarga, numeroEjes);
+        return new VehiculoCarga(placa, modelo, marca, color,
+                propietarioAsociado, listaPropietariosAsociados, capacidadCarga, numeroEjes);
     }
 
     public VehiculoCargaBuilder setCapacidadCarga(double capacidadCarga) {
