@@ -2,6 +2,7 @@ package co.edu.uniquindio.parcial1fx.parcial1.model;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 
 public class VehiculoTransporte extends Vehiculo {
     private int numeroMaxPasajeros;
@@ -16,7 +17,7 @@ public class VehiculoTransporte extends Vehiculo {
         super(placa, modelo, marca, color, propietarioAsociado, listaPropietariosAsociados);
 
         this.numeroMaxPasajeros = numeroMaxPasajeros;
-        this.listaUsuariosAsociados = listaUsuariosAsociados;
+        this.listaUsuariosAsociados = new LinkedList<>(listaUsuariosAsociados);
     }
 
     public int getNumeroMaxPasajeros() {

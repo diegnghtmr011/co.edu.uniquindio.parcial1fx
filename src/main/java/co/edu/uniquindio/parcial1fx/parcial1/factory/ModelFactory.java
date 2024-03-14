@@ -2,6 +2,8 @@ package co.edu.uniquindio.parcial1fx.parcial1.factory;
 
 import co.edu.uniquindio.parcial1fx.parcial1.model.*;
 import co.edu.uniquindio.parcial1fx.parcial1.model.builder.EmpresaTransporteBuilder;
+import co.edu.uniquindio.parcial1fx.parcial1.model.builder.PropietarioBuilder;
+import co.edu.uniquindio.parcial1fx.parcial1.model.builder.VehiculoTransporteBuilder;
 
 import java.util.Collection;
 
@@ -12,6 +14,7 @@ public class ModelFactory {
 
     private ModelFactory() {
         empresaTransporte = new EmpresaTransporteBuilder().build();
+        inicializarDatos();
     }
 
     public static ModelFactory getInstance() {
@@ -19,6 +22,27 @@ public class ModelFactory {
             modelFactory = new ModelFactory();
         }
         return modelFactory;
+    }
+
+    private void inicializarDatos() {
+
+        Propietario propietario01 = new PropietarioBuilder()
+                .setNombre("Juan")
+                .setCedula("123456789")
+                .setEmail("juan777@example.com")
+                .setCelular("3024567033")
+                .setVehiculoPrincipal(vehiculoTransporte01)
+                .build();
+
+        VehiculoTransporte vehiculoTransporte01 = new VehiculoTransporteBuilder()
+                .setPlaca("ABC123")
+                .setModelo("2019")
+                .setMarca("Copetran")
+                .setColor("Negro")
+                .setPropietarioAsociado(propietario01)
+                .setNumeroMaxPasajeros(30)
+                .build();
+
     }
 
     public boolean crearPropietario(String nombre, String cedula,

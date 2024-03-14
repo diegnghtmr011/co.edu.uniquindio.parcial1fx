@@ -6,26 +6,27 @@ import co.edu.uniquindio.parcial1fx.parcial1.model.VehiculoTransporte;
 import java.util.Collection;
 import java.util.LinkedList;
 
-public class VehiculoTransporteBuilder extends VehiculoBuilder {
+public class VehiculoTransporteBuilder extends VehiculoBuilder<VehiculoTransporteBuilder, VehiculoTransporte> {
     private int numeroMaxPasajeros;
     private Collection<Usuario> listaUsuariosAsociados = new LinkedList<>();
 
-    public VehiculoTransporteBuilder setNumeroMaxPasajeros
-            (int numeroMaxPasajeros) {
+    @Override
+    public VehiculoTransporte build() {
+        return new VehiculoTransporte(placa, modelo, marca, color, propietarioAsociado, listaPropietariosAsociados, numeroMaxPasajeros, listaUsuariosAsociados);
+    }
+
+    public VehiculoTransporteBuilder setNumeroMaxPasajeros(int numeroMaxPasajeros) {
         this.numeroMaxPasajeros = numeroMaxPasajeros;
         return this;
     }
 
-    public VehiculoTransporteBuilder setListaUsuariosAsociados
-            (Collection<Usuario> listaUsuariosAsociados) {
+    public VehiculoTransporteBuilder setListaUsuariosAsociados(Collection<Usuario> listaUsuariosAsociados) {
         this.listaUsuariosAsociados.addAll(listaUsuariosAsociados);
         return this;
     }
 
     @Override
-    public VehiculoTransporte build() {
-        return new VehiculoTransporte(placa, modelo, modelo, color,
-                propietarioAsociado, listaPropietariosAsociados,
-                numeroMaxPasajeros, listaUsuariosAsociados);
+    protected VehiculoTransporteBuilder self() {
+        return this;
     }
 }

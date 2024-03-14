@@ -184,7 +184,7 @@ public class EmpresaTransporte {
         VehiculoCarga vehiculoCargaEncontrado = obtenerVehiculoCarga(placa);
 
         if (vehiculoCargaEncontrado == null) {
-            VehiculoCarga vehiculoCarga = getBuildVehiculoCarga(placa, modelo
+            VehiculoCarga vehiculoCarga = getBuildVehiculoCarga(placa, modelo,
                     marca, color,propietarioAsociado,
                     listaPropietariosAsociados,
                     capacidadCarga, numeroEjes);

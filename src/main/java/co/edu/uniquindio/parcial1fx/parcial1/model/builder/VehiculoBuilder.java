@@ -2,52 +2,49 @@ package co.edu.uniquindio.parcial1fx.parcial1.model.builder;
 
 import co.edu.uniquindio.parcial1fx.parcial1.model.Propietario;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Vehiculo;
-import co.edu.uniquindio.parcial1fx.parcial1.services.IBuilder;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-public abstract class VehiculoBuilder implements IBuilder<Vehiculo> {
+public abstract class VehiculoBuilder<B extends VehiculoBuilder<B, V>, V extends Vehiculo> {
     protected String placa;
     protected String modelo;
     protected String marca;
     protected String color;
     protected Propietario propietarioAsociado;
-    protected Collection<Propietario>
-            listaPropietariosAsociados = new LinkedList<>();
+    protected Collection<Propietario> listaPropietariosAsociados = new LinkedList<>();
 
-    public VehiculoBuilder setPlaca(String placa) {
+    public abstract V build();
+
+    public B setPlaca(String placa) {
         this.placa = placa;
-        return this;
+        return self();
     }
 
-    public VehiculoBuilder setModelo(String modelo) {
+    public B setModelo(String modelo) {
         this.modelo = modelo;
-        return this;
+        return self();
     }
 
-    public VehiculoBuilder setMarca(String marca) {
+    public B setMarca(String marca) {
         this.marca = marca;
-        return this;
+        return self();
     }
 
-    public VehiculoBuilder setColor(String color) {
+    public B setColor(String color) {
         this.color = color;
-        return this;
+        return self();
     }
 
-    public VehiculoBuilder setPropietarioAsociado
-            (Propietario propietarioAsociado) {
+    public B setPropietarioAsociado(Propietario propietarioAsociado) {
         this.propietarioAsociado = propietarioAsociado;
-        return this;
+        return self();
     }
 
-    public VehiculoBuilder setListaPropietariosAsociados
-            (Collection<Propietario> listaPropietariosAsociados) {
-        this.listaPropietariosAsociados.addAll(listaPropietariosAsociados);
-        return this;
+    public B setListaPropietariosAsociados(Collection<Propietario> listaPropietariosAsociados) {
+        this.listaPropietariosAsociados = listaPropietariosAsociados;
+        return self();
     }
 
-    @Override
-    public abstract Vehiculo build();
+    protected abstract B self();
 }

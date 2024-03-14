@@ -2,9 +2,14 @@ package co.edu.uniquindio.parcial1fx.parcial1.model.builder;
 
 import co.edu.uniquindio.parcial1fx.parcial1.model.VehiculoCarga;
 
-public class VehiculoCargaBuilder extends VehiculoBuilder {
+public class VehiculoCargaBuilder extends VehiculoBuilder<VehiculoCargaBuilder, VehiculoCarga> {
     private double capacidadCarga;
     private int numeroEjes;
+
+    @Override
+    public VehiculoCarga build() {
+        return new VehiculoCarga(placa, modelo, marca, color, propietarioAsociado, listaPropietariosAsociados, capacidadCarga, numeroEjes);
+    }
 
     public VehiculoCargaBuilder setCapacidadCarga(double capacidadCarga) {
         this.capacidadCarga = capacidadCarga;
@@ -17,9 +22,7 @@ public class VehiculoCargaBuilder extends VehiculoBuilder {
     }
 
     @Override
-    public VehiculoCarga build() {
-        return new VehiculoCarga(placa, modelo, modelo, color,
-                propietarioAsociado, listaPropietariosAsociados,
-                capacidadCarga, numeroEjes);
+    protected VehiculoCargaBuilder self() {
+        return this;
     }
 }
