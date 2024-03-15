@@ -44,10 +44,16 @@ public class EmpresaTransporteController {
     private Button btnCalcularPasajerosTransportados;
 
     @FXML
+    private Button btnObtenerAdultosMayores;
+
+    @FXML
     private Button btnObtenerMayoresEdad;
 
     @FXML
     private Button btnObtenerNumeroUsuariosPlaca;
+
+    @FXML
+    private Button btnObtenerUsuariosSuperioresPeso;
 
     @FXML
     private TextField txtCapacidadCargaVehiculoCarga;
@@ -68,9 +74,6 @@ public class EmpresaTransporteController {
     private TextField txtCedulaPropietarioVehiculoTransporte;
 
     @FXML
-    private TextField txtIDUsuariosVehiculoTransporte;
-
-    @FXML
     private TextField txtCelularPropietario;
 
     @FXML
@@ -80,6 +83,9 @@ public class EmpresaTransporteController {
     private TextField txtColorVehiculoTransporte;
 
     @FXML
+    private TextField txtEdadPropietario;
+
+    @FXML
     private TextField txtEdadUsuario;
 
     @FXML
@@ -87,6 +93,9 @@ public class EmpresaTransporteController {
 
     @FXML
     private TextField txtIDUsuario;
+
+    @FXML
+    private TextField txtIDUsuariosVehiculoTransporte;
 
     @FXML
     private TextField txtMarcaVehiculoCarga;
@@ -107,10 +116,22 @@ public class EmpresaTransporteController {
     private TextField txtNombreUsuario;
 
     @FXML
+    private TextField txtNumeroChassisVehiculoCarga;
+
+    @FXML
+    private TextField txtNumeroChassisVehiculoTransporte;
+
+    @FXML
     private TextField txtNumeroEjesVehiculoCarga;
 
     @FXML
     private TextField txtNumeroMaxPasajerosVehiculoTransporte;
+
+    @FXML
+    private TextField txtPesoObtenerNumeroUsuariosPesoInicio;
+
+    @FXML
+    private TextField txtPesoUsuario;
 
     @FXML
     private TextField txtPlacaObtenerNumeroUsuariosPlacaInicio;
@@ -144,6 +165,16 @@ public class EmpresaTransporteController {
 
     @FXML
     private TextArea txtResultadoVehiculoTransporte;
+
+    @FXML
+    void onObtenerAdultosMayores(ActionEvent event) {
+        obtenerAdultosMayores();
+    }
+
+    @FXML
+    void onObtenerUsuariosSuperiorPeso(ActionEvent event) {
+        obtenerUsuariosSuperioresPeso();
+    }
 
     @FXML
     void onAgregarPropietario(ActionEvent event) {
@@ -193,6 +224,7 @@ public class EmpresaTransporteController {
                     "Cédula: " + txtCedulaPropietario.getText().trim() + "\n" +
                     "Email: " + txtEmailPropietario.getText().trim() + "\n" +
                     "Celular: " + txtCelularPropietario.getText().trim() + "\n" +
+                    "Edad: " + txtEdadPropietario.getText().trim() + "\n" +
                     "Placa Vehículo Principal: " + txtPlacaVehiculoPrincipalPropietario
                     .getText().trim() + "\n" +
                     "Placas de Vehículos Asociados: " + txtPlacaVehiculosAsociadosPropietario
@@ -221,6 +253,9 @@ public class EmpresaTransporteController {
         AssertionUtil.assertion(txtPlacaVehiculoPrincipalPropietario.getText() != null &&
                         !txtPlacaVehiculoPrincipalPropietario.getText().isBlank(),
                 "La placa del vehículo principal del propietario no puede ser nula o vacía");
+        AssertionUtil.assertion(txtEdadPropietario.getText() != null &&
+                        !txtEdadPropietario.getText().isBlank(),
+                "La edad del propietario no puede ser nula o vacía");
 
         Vehiculo vehiculo = modelFactory.buscarVehiculo
                 (txtPlacaVehiculoPrincipalPropietario.getText());
@@ -234,7 +269,8 @@ public class EmpresaTransporteController {
                 (txtNombrePropietario.getText(), txtCedulaPropietario.getText(),
                         txtEmailPropietario.getText(),
                         txtCelularPropietario.getText(),
-                        vehiculo, vehiculosAsociados);
+                        vehiculo, vehiculosAsociados,
+                        Integer.parseInt(txtEdadPropietario.getText()));
 
         txtResultadoPropietario.setText
                 (construirMensajeDetallesPropietario(propietarioCreado));
@@ -263,6 +299,7 @@ public class EmpresaTransporteController {
                     "Nombre: " + txtNombreUsuario.getText().trim() + "\n" +
                     "ID: " + txtIDUsuario.getText().trim() + "\n" +
                     "Edad: " + txtEdadUsuario.getText().trim() + "\n" +
+                    "Peso: " + txtPesoUsuario.getText().trim() + "\n" +
                     "Placa Vehículo Asociado: " + txtPlacaVehiculoUsuario.getText().trim();
         } else {
             mensaje = "No se pudo crear el usuario. " +
@@ -284,6 +321,9 @@ public class EmpresaTransporteController {
         AssertionUtil.assertion(txtPlacaVehiculoUsuario.getText() != null &&
                         !txtPlacaVehiculoUsuario.getText().isBlank(),
                 "La placa del vehículo asociado del usuario no puede ser nula o vacía");
+        AssertionUtil.assertion(txtPesoUsuario.getText() != null &&
+                        !txtPesoUsuario.getText().isBlank(),
+                "El peso del usuario no puede ser nulo o vacío");
 
         VehiculoTransporte vehiculoAsociado = modelFactory.buscarVehiculoTransporte
                 (txtPlacaVehiculoUsuario.getText());
@@ -292,7 +332,7 @@ public class EmpresaTransporteController {
                 txtNombreUsuario.getText().trim(),
                 txtIDUsuario.getText().trim(),
                 Integer.parseInt(txtEdadUsuario.getText().trim()),
-                vehiculoAsociado);
+                vehiculoAsociado, Double.parseDouble(txtPesoUsuario.getText().trim()));
 
         txtResultadoUsuario.setText
                 (construirMensajeDetallesUsuario(usuarioCreado));
@@ -324,6 +364,7 @@ public class EmpresaTransporteController {
                     "Color: " + txtColorVehiculoCarga.getText().trim() + "\n" +
                     "Capacidad de Carga: " + txtCapacidadCargaVehiculoCarga.getText().trim() + "\n" +
                     "Número de Ejes: " + txtNumeroEjesVehiculoCarga.getText().trim() + "\n" +
+                    "Número de Chasis: " + txtNumeroChassisVehiculoCarga.getText().trim() + "\n" +
                     "Cédula Propietario: " + txtCedulaPropietarioVehiculoCarga.getText().trim() + "\n" +
                     "Cédulas de Propietarios Asociados: " + txtCedulaAsociadosVehiculoCarga.getText().trim();
             return mensaje;
@@ -356,6 +397,9 @@ public class EmpresaTransporteController {
         AssertionUtil.assertion(txtNumeroEjesVehiculoCarga.getText() != null &&
                         !txtNumeroEjesVehiculoCarga.getText().isBlank(),
                 "El número de ejes del vehículo de carga no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtNumeroChassisVehiculoCarga.getText() != null &&
+                        !txtNumeroChassisVehiculoCarga.getText().isBlank(),
+                "El número de chasis del vehículo de carga no puede ser nulo o vacío");
 
         Propietario propietario = modelFactory.buscarPropietario
                 (txtCedulaPropietarioVehiculoCarga.getText());
@@ -369,7 +413,8 @@ public class EmpresaTransporteController {
                         txtMarcaVehiculoCarga.getText(), txtColorVehiculoCarga.getText(),
                         propietario, propietariosAsociados,
                         Double.parseDouble(txtCapacidadCargaVehiculoCarga.getText()),
-                        Integer.parseInt(txtNumeroEjesVehiculoCarga.getText()));
+                        Integer.parseInt(txtNumeroEjesVehiculoCarga.getText()),
+                        txtNumeroChassisVehiculoCarga.getText());
 
         txtResultadoVehiculoCarga.setText
                 (construirMensajeDetallesVehiculoCarga(vehiculoCargaCreado));
@@ -398,10 +443,11 @@ public class EmpresaTransporteController {
                     "Modelo: " + txtModeloVehiculoTransporte.getText().trim() + "\n" +
                     "Marca: " + txtMarcaVehiculoTransporte.getText().trim() + "\n" +
                     "Color: " + txtColorVehiculoTransporte.getText().trim() + "\n" +
+                    "Número Máximo de Pasajeros: " + txtNumeroMaxPasajerosVehiculoTransporte.getText().trim() + "\n" +
+                    "Número de Chasis: " + txtNumeroChassisVehiculoTransporte.getText().trim() + "\n" +
                     "Cédula Propietario: " + txtCedulaPropietarioVehiculoTransporte.getText().trim() + "\n" +
                     "Cédulas de Propietarios Asociados: " + txtCedulaAsociadosVehiculoTransporte.getText().trim() + "\n" +
-                    "ID Usuarios Asociados: " + txtIDUsuariosVehiculoTransporte.getText().trim() + "\n" +
-                    "Número Máximo de Pasajeros: " + txtNumeroMaxPasajerosVehiculoTransporte.getText().trim();
+                    "ID Usuarios Asociados: " + txtIDUsuariosVehiculoTransporte.getText().trim();
             return mensaje;
         } else {
             mensaje = "No se pudo crear el vehículo de transporte. " +
@@ -429,6 +475,9 @@ public class EmpresaTransporteController {
         AssertionUtil.assertion(txtNumeroMaxPasajerosVehiculoTransporte.getText() != null &&
                         !txtNumeroMaxPasajerosVehiculoTransporte.getText().isBlank(),
                 "El número máximo de pasajeros del vehículo de transporte no puede ser nulo o vacío");
+        AssertionUtil.assertion(txtNumeroChassisVehiculoTransporte.getText() != null &&
+                        !txtNumeroChassisVehiculoTransporte.getText().isBlank(),
+                "El número de chasis del vehículo de transporte no puede ser nulo o vacío");
 
         Propietario propietario = modelFactory.buscarPropietario
                 (txtCedulaPropietarioVehiculoTransporte.getText());
@@ -447,7 +496,7 @@ public class EmpresaTransporteController {
                         txtColorVehiculoTransporte.getText(), propietario,
                         propietariosAsociados,
                         Integer.parseInt(txtNumeroMaxPasajerosVehiculoTransporte.getText()),
-                        usuariosAsociados);
+                        usuariosAsociados, txtNumeroChassisVehiculoTransporte.getText());
 
         txtResultadoVehiculoTransporte.setText
                 (construirMensajeDetallesVehiculoTransporte(vehiculoTransporteCreado));
@@ -470,11 +519,13 @@ public class EmpresaTransporteController {
 
     private void calcularPasajerosTransportados() {
         int pasajerosTransportados = modelFactory.calcularPasajerosTransportados();
+
         txtResultadoInicio.setText("Pasajeros transportados: " + pasajerosTransportados);
     }
 
     private void obtenerMayoresEdad() {
         long mayoresEdad = modelFactory.obtenerMayoresEdad();
+
         txtResultadoInicio.setText("Usuarios mayores de edad: " + mayoresEdad);
     }
 
@@ -485,10 +536,30 @@ public class EmpresaTransporteController {
 
         int numeroUsuarios = modelFactory.obtenerNumeroUsuariosPlaca
                 (txtPlacaObtenerNumeroUsuariosPlacaInicio.getText());
+
         txtResultadoInicio.setText("El vehiculo identificado con la placa " +
                 txtPlacaObtenerNumeroUsuariosPlacaInicio.getText() +
                 " tiene " +
                 numeroUsuarios +
                 " usuarios.");
+    }
+
+    private void obtenerAdultosMayores() {
+        long adultosMayores = modelFactory.obtenerAdultosMayores();
+
+        txtResultadoInicio.setText("Adultos mayores: " + adultosMayores);
+    }
+
+    private void obtenerUsuariosSuperioresPeso() {
+        AssertionUtil.assertion(txtPesoObtenerNumeroUsuariosPesoInicio.getText() != null &&
+                        !txtPesoObtenerNumeroUsuariosPesoInicio.getText().isBlank(),
+                "El peso no puede ser nulo o vacío");
+
+        long numeroUsuarios = modelFactory.obtenerUsuariosSuperioresPeso
+                (Double.parseDouble(txtPesoObtenerNumeroUsuariosPesoInicio.getText()));
+
+        txtResultadoInicio.setText("Usuarios con peso superior a " +
+                txtPesoObtenerNumeroUsuariosPesoInicio.getText() + ": " +
+                numeroUsuarios);
     }
 }

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.parcial1fx.parcial1.model.builder;
 
+import co.edu.uniquindio.parcial1fx.parcial1.model.EmpresaTransporte;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Propietario;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Vehiculo;
 import co.edu.uniquindio.parcial1fx.parcial1.services.IBuilder;
@@ -14,6 +15,8 @@ public class PropietarioBuilder implements IBuilder {
     private String celular;
     private Vehiculo vehiculoPrincipal;
     private Collection<Vehiculo> listaVehiculosAsociados = new LinkedList<>();
+    private int edad;
+    private EmpresaTransporte ownByEmpresaTransporte;
 
     public PropietarioBuilder setNombre(String nombre) {
         this.nombre = nombre;
@@ -53,9 +56,21 @@ public class PropietarioBuilder implements IBuilder {
         return this;
     }
 
+    public PropietarioBuilder setEdad(int edad) {
+        this.edad = edad;
+        return this;
+    }
+
+    public PropietarioBuilder setOwnByEmpresaTransporte(
+            EmpresaTransporte ownByEmpresaTransporte) {
+        this.ownByEmpresaTransporte = ownByEmpresaTransporte;
+        return this;
+    }
+
     @Override
     public Propietario build() {
         return new Propietario(nombre, cedula,
-                email, celular, vehiculoPrincipal, listaVehiculosAsociados);
+                email, celular, vehiculoPrincipal, listaVehiculosAsociados,
+                edad, ownByEmpresaTransporte);
     }
 }

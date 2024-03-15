@@ -29,6 +29,8 @@ public class ModelFactory {
                 .setCedula("123456789")
                 .setEmail("juan777@example.com")
                 .setCelular("3024567033")
+                .setEdad(30)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Propietario propietario02 = new PropietarioBuilder()
@@ -36,6 +38,8 @@ public class ModelFactory {
                 .setCedula("987654321")
                 .setEmail("maria123@example.com")
                 .setCelular("3105678901")
+                .setEdad(40)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Propietario propietario03 = new PropietarioBuilder()
@@ -43,60 +47,80 @@ public class ModelFactory {
                 .setCedula("246810121")
                 .setEmail("carlos456@example.com")
                 .setCelular("3156789012")
+                .setEdad(50)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario01 = new UsuarioBuilder()
                 .setNombre("Alvaro")
                 .setID("495543432")
                 .setEdad(55)
+                .setPeso(80.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario02 = new UsuarioBuilder()
                 .setNombre("Beatriz")
                 .setID("876543219")
                 .setEdad(45)
+                .setPeso(70.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario03 = new UsuarioBuilder()
                 .setNombre("Carlos")
                 .setID("123456789")
                 .setEdad(60)
+                .setPeso(90.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario04 = new UsuarioBuilder()
                 .setNombre("Diana")
                 .setID("987654321")
                 .setEdad(40)
+                .setPeso(60.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario05 = new UsuarioBuilder()
                 .setNombre("Eduardo")
                 .setID("246810121")
                 .setEdad(15)
+                .setPeso(50.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario06 = new UsuarioBuilder()
                 .setNombre("Fernanda")
                 .setID("135791357")
                 .setEdad(35)
+                .setPeso(70.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario07 = new UsuarioBuilder()
                 .setNombre("Gustavo")
                 .setID("579135791")
                 .setEdad(11)
+                .setPeso(40.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario08 = new UsuarioBuilder()
                 .setNombre("Hernando")
                 .setID("357913579")
                 .setEdad(25)
+                .setPeso(60.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         Usuario usuario09 = new UsuarioBuilder()
                 .setNombre("Isabel")
                 .setID("791357913")
                 .setEdad(20)
+                .setPeso(50.5)
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         VehiculoCarga vehiculoCarga01 = new VehiculoCargaBuilder()
@@ -106,6 +130,8 @@ public class ModelFactory {
                 .setColor("Rojo")
                 .setCapacidadCarga(20.5)
                 .setNumeroEjes(4)
+                .setNumeroChasis("123456789")
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         VehiculoCarga vehiculoCarga02 = new VehiculoCargaBuilder()
@@ -115,6 +141,8 @@ public class ModelFactory {
                 .setColor("Verde")
                 .setCapacidadCarga(25.0)
                 .setNumeroEjes(6)
+                .setNumeroChasis("987654321")
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         VehiculoCarga vehiculoCarga03 = new VehiculoCargaBuilder()
@@ -124,6 +152,8 @@ public class ModelFactory {
                 .setColor("Azul")
                 .setCapacidadCarga(30.0)
                 .setNumeroEjes(8)
+                .setNumeroChasis("246810121")
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         VehiculoTransporte vehiculoTransporte01 = new VehiculoTransporteBuilder()
@@ -132,6 +162,8 @@ public class ModelFactory {
                 .setMarca("Copetran")
                 .setColor("Negro")
                 .setNumeroMaxPasajeros(30)
+                .setNumeroChasis("8468587521")
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         VehiculoTransporte vehiculoTransporte02 = new VehiculoTransporteBuilder()
@@ -140,6 +172,8 @@ public class ModelFactory {
                 .setMarca("Berlinas")
                 .setColor("Blanco")
                 .setNumeroMaxPasajeros(40)
+                .setNumeroChasis("7471587529")
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         VehiculoTransporte vehiculoTransporte03 = new VehiculoTransporteBuilder()
@@ -148,6 +182,8 @@ public class ModelFactory {
                 .setMarca("Flota Magdalena")
                 .setColor("Azul")
                 .setNumeroMaxPasajeros(50)
+                .setNumeroChasis("84775892")
+                .setOwnByEmpresaTransporte(empresaTransporte)
                 .build();
 
         vehiculoTransporte01.agregarUsuarioAsociado(usuario01);
@@ -183,26 +219,29 @@ public class ModelFactory {
     public boolean crearPropietario(String nombre, String cedula,
                                     String email, String celular,
                                     Vehiculo vehiculoPrincipal,
-                                    Collection<Vehiculo> listaVehiculosAsociados) {
+                                    Collection<Vehiculo> listaVehiculosAsociados,
+                                    int edad) {
         return empresaTransporte.crearPropetario(nombre, cedula, email,
-                celular, vehiculoPrincipal, listaVehiculosAsociados);
+                celular, vehiculoPrincipal, listaVehiculosAsociados, edad);
 
     }
 
     public boolean crearUsuario(String nombre, String ID, int edad,
-                                VehiculoTransporte vehiculoTransporteAsociado) {
+                                VehiculoTransporte vehiculoTransporteAsociado,
+                                double peso) {
         return empresaTransporte.crearUsuario(nombre, ID, edad,
-                vehiculoTransporteAsociado);
+                vehiculoTransporteAsociado, peso);
     }
 
     public boolean crearVehiculoCarga(String placa, String modelo,
                                       String marca, String color,
                                       Propietario propietarioAsociado,
                                       Collection<Propietario> listaPropietariosAsociados,
-                                      double capacidadCarga, int numeroEjes) {
+                                      double capacidadCarga, int numeroEjes,
+                                      String numeroChasis) {
         return empresaTransporte.crearVehiculoCarga(placa, modelo, marca, color,
                 propietarioAsociado, listaPropietariosAsociados,
-                capacidadCarga, numeroEjes);
+                capacidadCarga, numeroEjes, numeroChasis);
     }
 
     public boolean crearVehiculoTransporte(String placa, String modelo,
@@ -210,10 +249,11 @@ public class ModelFactory {
                                            Propietario propietarioAsociado,
                                            Collection<Propietario> listaPropietariosAsociados,
                                            int numeroMaxPasajeros,
-                                           Collection<Usuario> listaUsuariosAsociados) {
+                                           Collection<Usuario> listaUsuariosAsociados,
+                                           String numeroChasis) {
         return empresaTransporte.crearVehiculoTransporte(placa, modelo, marca,
                 color, propietarioAsociado, listaPropietariosAsociados,
-                numeroMaxPasajeros, listaUsuariosAsociados);
+                numeroMaxPasajeros, listaUsuariosAsociados, numeroChasis);
     }
 
     public Vehiculo buscarVehiculo(String placa) {
@@ -242,5 +282,13 @@ public class ModelFactory {
 
     public long obtenerMayoresEdad() {
         return empresaTransporte.obtenerMayoresEdad();
+    }
+
+    public long obtenerAdultosMayores() {
+        return empresaTransporte.obtenerUsuariosAdultosMayores();
+    }
+
+    public long obtenerUsuariosSuperioresPeso(double peso) {
+        return empresaTransporte.obtenerUsuariosPesoMayor(peso);
     }
 }

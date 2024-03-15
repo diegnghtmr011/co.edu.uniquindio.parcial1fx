@@ -13,9 +13,12 @@ public class VehiculoTransporte extends Vehiculo {
                               Propietario propietarioAsociado,
                               Collection<Propietario> listaPropietariosAsociados,
                               int numeroMaxPasajeros,
-                              Collection<Usuario> listaUsuariosAsociados) {
-        super(placa, modelo, marca, color, propietarioAsociado, listaPropietariosAsociados);
-
+                              Collection<Usuario> listaUsuariosAsociados,
+                              EmpresaTransporte ownByEmpresaTransporte,
+                              String numeroChasis) {
+        super(placa, modelo, marca, color,
+                propietarioAsociado, listaPropietariosAsociados,
+                ownByEmpresaTransporte, numeroChasis);
         this.numeroMaxPasajeros = numeroMaxPasajeros;
         this.listaUsuariosAsociados = new LinkedList<>(listaUsuariosAsociados);
     }

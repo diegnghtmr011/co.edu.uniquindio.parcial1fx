@@ -1,5 +1,6 @@
 package co.edu.uniquindio.parcial1fx.parcial1.model.builder;
 
+import co.edu.uniquindio.parcial1fx.parcial1.model.EmpresaTransporte;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Propietario;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Vehiculo;
 
@@ -13,6 +14,8 @@ public abstract class VehiculoBuilder<B extends VehiculoBuilder<B, V>, V extends
     protected String color;
     protected Propietario propietarioAsociado;
     protected Collection<Propietario> listaPropietariosAsociados = new LinkedList<>();
+    protected EmpresaTransporte ownByEmpresaTransporte;
+    protected String numeroChasis;
 
     public abstract V build();
 
@@ -43,6 +46,16 @@ public abstract class VehiculoBuilder<B extends VehiculoBuilder<B, V>, V extends
 
     public B setListaPropietariosAsociados(Collection<Propietario> listaPropietariosAsociados) {
         this.listaPropietariosAsociados = listaPropietariosAsociados;
+        return self();
+    }
+
+    public B setOwnByEmpresaTransporte(EmpresaTransporte ownByEmpresaTransporte) {
+        this.ownByEmpresaTransporte = ownByEmpresaTransporte;
+        return self();
+    }
+
+    public B setNumeroChasis(String numeroChasis) {
+        this.numeroChasis = numeroChasis;
         return self();
     }
 

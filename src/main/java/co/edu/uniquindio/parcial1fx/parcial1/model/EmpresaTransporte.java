@@ -91,7 +91,8 @@ public class EmpresaTransporte {
     private Propietario getBuildPropietario(String nombre, String cedula,
                                         String email, String celular,
                                         Vehiculo vehiculoPrincipal,
-                                        Collection<Vehiculo> listaVehiculosAsociados) {
+                                        Collection<Vehiculo> listaVehiculosAsociados,
+                                            int edad) {
         return new PropietarioBuilder()
                 .setNombre(nombre)
                 .setCedula(cedula)
@@ -99,18 +100,22 @@ public class EmpresaTransporte {
                 .setCelular(celular)
                 .setVehiculoPrincipal(vehiculoPrincipal)
                 .setListaVehiculosAsociados(listaVehiculosAsociados)
+                .setEdad(edad)
+                .setOwnByEmpresaTransporte(this)
                 .build();
     }
 
     public boolean crearPropetario(String nombre, String cedula,
                                 String email, String celular,
                                 Vehiculo vehiculoPrincipal,
-                                Collection<Vehiculo> listaVehiculosAsociados) {
+                                Collection<Vehiculo> listaVehiculosAsociados,
+                                   int edad) {
         Propietario propietarioEncontrado = obtenerPropietario(cedula);
 
         if (propietarioEncontrado == null) {
             Propietario propietario = getBuildPropietario(nombre, cedula,
-                    email, celular,  vehiculoPrincipal, listaVehiculosAsociados);
+                    email, celular,  vehiculoPrincipal, listaVehiculosAsociados,
+                    edad);
             agregarPropietario(propietario);
             return true;
         }
@@ -128,22 +133,26 @@ public class EmpresaTransporte {
     }
 
     private Usuario getBuildUsuario(String nombre, String ID, int edad,
-                                    VehiculoTransporte vehiculoTransporteAsociado) {
+                                    VehiculoTransporte vehiculoTransporteAsociado,
+                                    double peso) {
         return new UsuarioBuilder()
                 .setNombre(nombre)
                 .setID(ID)
                 .setEdad(edad)
                 .setVehiculoTransporteAsociado(vehiculoTransporteAsociado)
+                .setPeso(peso)
+                .setOwnByEmpresaTransporte(this)
                 .build();
     }
 
     public boolean crearUsuario(String nombre, String ID, int edad,
-                                VehiculoTransporte vehiculoTransporteAsociado) {
+                                VehiculoTransporte vehiculoTransporteAsociado,
+                                double peso) {
         Usuario usuarioEncontrado = obtenerUsuario(ID);
 
         if (usuarioEncontrado == null) {
             Usuario usuario = getBuildUsuario(nombre, ID, edad,
-                    vehiculoTransporteAsociado);
+                    vehiculoTransporteAsociado, peso);
             agregarUsuario(usuario);
             return true;
         }
@@ -164,7 +173,8 @@ public class EmpresaTransporte {
                                           String marca, String color,
                                           Propietario propietarioAsociado,
                                           Collection<Propietario> listaPropietariosAsociados,
-                                          double capacidadCarga, int numeroEjes) {
+                                          double capacidadCarga, int numeroEjes,
+                                                String numeroChasis) {
         return new VehiculoCargaBuilder()
                 .setPlaca(placa)
                 .setModelo(modelo)
@@ -174,6 +184,8 @@ public class EmpresaTransporte {
                 .setListaPropietariosAsociados(listaPropietariosAsociados)
                 .setCapacidadCarga(capacidadCarga)
                 .setNumeroEjes(numeroEjes)
+                .setNumeroChasis(numeroChasis)
+                .setOwnByEmpresaTransporte(this)
                 .build();
     }
 
@@ -181,14 +193,15 @@ public class EmpresaTransporte {
                                       String marca, String color,
                                       Propietario propietarioAsociado,
                                       Collection<Propietario> listaPropietariosAsociados,
-                                      double capacidadCarga, int numeroEjes) {
+                                      double capacidadCarga, int numeroEjes,
+                                      String numeroChasis) {
         VehiculoCarga vehiculoCargaEncontrado = obtenerVehiculoCarga(placa);
 
         if (vehiculoCargaEncontrado == null) {
             VehiculoCarga vehiculoCarga = getBuildVehiculoCarga(placa, modelo,
                     marca, color,propietarioAsociado,
                     listaPropietariosAsociados,
-                    capacidadCarga, numeroEjes);
+                    capacidadCarga, numeroEjes, numeroChasis);
             agregarVehiculoCarga(vehiculoCarga);
             return true;
         }
@@ -210,7 +223,7 @@ public class EmpresaTransporte {
              Propietario propietarioAsociado,
              Collection<Propietario> listaPropietariosAsociados,
              int numeroMaxPasajeros,
-             Collection<Usuario> listaUsuariosAsociados) {
+             Collection<Usuario> listaUsuariosAsociados, String numeroChasis) {
         return new VehiculoTransporteBuilder()
                 .setPlaca(placa)
                 .setModelo(modelo)
@@ -220,6 +233,8 @@ public class EmpresaTransporte {
                 .setListaPropietariosAsociados(listaPropietariosAsociados)
                 .setNumeroMaxPasajeros(numeroMaxPasajeros)
                 .setListaUsuariosAsociados(listaUsuariosAsociados)
+                .setNumeroChasis(numeroChasis)
+                .setOwnByEmpresaTransporte(this)
                 .build();
 
     }
@@ -229,13 +244,14 @@ public class EmpresaTransporte {
                                            Propietario propietarioAsociado,
                                            Collection<Propietario> listaPropietariosAsociados,
                                            int numeroMaxPasajeros,
-                                           Collection<Usuario> listaUsuariosAsociados) {
+                                           Collection<Usuario> listaUsuariosAsociados,
+                                           String numeroChasis) {
         VehiculoTransporte vehiculoTransporteEncontrado = obtenerVehiculoTransporte(placa);
         if (vehiculoTransporteEncontrado == null) {
             VehiculoTransporte vehiculoTransporte = getBuildVehiculoTransporte(placa,
                     modelo, marca, color, propietarioAsociado,
                     listaPropietariosAsociados, numeroMaxPasajeros,
-                    listaUsuariosAsociados);
+                    listaUsuariosAsociados, numeroChasis);
             agregarVehiculoTransporte(vehiculoTransporte);
             return true;
         }
@@ -259,7 +275,9 @@ public class EmpresaTransporte {
 
     public int calcularPasajerosTransportados() {
         return getListaVehiculosTransporte().stream()
-                .mapToInt(vehiculoTransporte -> vehiculoTransporte.getListaUsuariosAsociados().size())
+                .mapToInt(vehiculoTransporte -> vehiculoTransporte
+                        .getListaUsuariosAsociados()
+                        .size())
                 .sum();
     }
 
@@ -276,6 +294,22 @@ public class EmpresaTransporte {
         return getListaUsuarios().stream()
                 .mapToInt(Usuario::getEdad)
                 .filter(edad -> edad >= 18)
+                .count();
+    }
+
+    // Nuevos metodos parcial
+
+    public long obtenerUsuariosPesoMayor(double peso) {
+        return getListaUsuarios().stream()
+                .mapToDouble(Usuario::getPeso)
+                .filter(pesoUsuario -> pesoUsuario > peso)
+                .count();
+    }
+
+    public long obtenerUsuariosAdultosMayores() {
+        return getListaUsuarios().stream()
+                .mapToInt(Usuario::getEdad)
+                .filter(edad -> edad >= 40)
                 .count();
     }
 }

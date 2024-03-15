@@ -12,7 +12,9 @@ public class VehiculoTransporteBuilder extends VehiculoBuilder<VehiculoTransport
 
     @Override
     public VehiculoTransporte build() {
-        return new VehiculoTransporte(placa, modelo, marca, color, propietarioAsociado, listaPropietariosAsociados, numeroMaxPasajeros, listaUsuariosAsociados);
+        return new VehiculoTransporte(placa, modelo, marca, color, propietarioAsociado,
+                listaPropietariosAsociados, numeroMaxPasajeros, listaUsuariosAsociados,
+                ownByEmpresaTransporte, numeroChasis);
     }
 
     public VehiculoTransporteBuilder setNumeroMaxPasajeros(int numeroMaxPasajeros) {

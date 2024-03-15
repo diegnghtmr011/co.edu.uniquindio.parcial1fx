@@ -11,17 +11,22 @@ public abstract class Vehiculo {
     private String color;
     private Propietario propietarioAsociado;
     private Collection<Propietario> listaPropietariosAsociados;
+    private EmpresaTransporte ownByEmpresaTransporte;
+    private String numeroChasis;
 
     public Vehiculo(String placa, String modelo,
                     String marca, String color,
                     Propietario propietarioAsociado,
-                    Collection<Propietario> listaPropietariosAsociados) {
+                    Collection<Propietario> listaPropietariosAsociados,
+                    EmpresaTransporte ownByEmpresaTransporte, String numeroChasis) {
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
         this.color = color;
         this.propietarioAsociado = propietarioAsociado;
         this.listaPropietariosAsociados = new LinkedList<>(listaPropietariosAsociados);
+        this.ownByEmpresaTransporte = ownByEmpresaTransporte;
+        this.numeroChasis = numeroChasis;
     }
 
     public String getPlaca() {
@@ -46,6 +51,14 @@ public abstract class Vehiculo {
 
     public Collection<Propietario> getListaPropietariosAsociados() {
         return Collections.unmodifiableCollection(listaPropietariosAsociados);
+    }
+
+    public EmpresaTransporte getOwnByEmpresaTransporte() {
+        return ownByEmpresaTransporte;
+    }
+
+    public String getNumeroChasis() {
+        return numeroChasis;
     }
 
     public void agregarPropietarioAsociado(Propietario propietario) {

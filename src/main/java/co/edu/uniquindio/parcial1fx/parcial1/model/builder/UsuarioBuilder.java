@@ -1,5 +1,6 @@
 package co.edu.uniquindio.parcial1fx.parcial1.model.builder;
 
+import co.edu.uniquindio.parcial1fx.parcial1.model.EmpresaTransporte;
 import co.edu.uniquindio.parcial1fx.parcial1.model.Usuario;
 import co.edu.uniquindio.parcial1fx.parcial1.model.VehiculoTransporte;
 import co.edu.uniquindio.parcial1fx.parcial1.services.IBuilder;
@@ -9,6 +10,8 @@ public class UsuarioBuilder implements IBuilder {
     private String ID;
     private int edad;
     private VehiculoTransporte vehiculoTransporteAsociado;
+    private double peso;
+    private EmpresaTransporte ownByEmpresaTransporte;
 
     public UsuarioBuilder setNombre(String nombre) {
         this.nombre = nombre;
@@ -31,8 +34,20 @@ public class UsuarioBuilder implements IBuilder {
         return this;
     }
 
+    public UsuarioBuilder setPeso(double peso) {
+        this.peso = peso;
+        return this;
+    }
+
+    public UsuarioBuilder setOwnByEmpresaTransporte(
+            EmpresaTransporte ownByEmpresaTransporte) {
+        this.ownByEmpresaTransporte = ownByEmpresaTransporte;
+        return this;
+    }
+
     @Override
     public Usuario build() {
-        return new Usuario(nombre, ID, edad, vehiculoTransporteAsociado);
+        return new Usuario(nombre, ID, edad, vehiculoTransporteAsociado, peso,
+                ownByEmpresaTransporte);
     }
 }

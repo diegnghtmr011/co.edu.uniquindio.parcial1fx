@@ -11,17 +11,22 @@ public class Propietario {
     private String celular;
     private Vehiculo vehiculoPrincipal;
     private Collection<Vehiculo> listaVehiculosAsociados;
+    private int edad;
+    private EmpresaTransporte ownByEmpresaTransporte;
 
     public Propietario(String nombre, String cedula,
                        String email, String celular,
                        Vehiculo vehiculoPrincipal,
-                       Collection<Vehiculo> listaVehiculosAsociados) {
+                       Collection<Vehiculo> listaVehiculosAsociados, int edad,
+                       EmpresaTransporte ownByEmpresaTransporte) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.email = email;
         this.celular = celular;
         this.vehiculoPrincipal = vehiculoPrincipal;
         this.listaVehiculosAsociados = new LinkedList<>(listaVehiculosAsociados);
+        this.edad = edad;
+        this.ownByEmpresaTransporte = ownByEmpresaTransporte;
     }
 
     public String getNombre() {
@@ -46,6 +51,14 @@ public class Propietario {
 
     public Collection<Vehiculo> getListaVehiculosAsociados() {
         return Collections.unmodifiableCollection(listaVehiculosAsociados);
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public EmpresaTransporte getOwnByEmpresaTransporte() {
+        return ownByEmpresaTransporte;
     }
 
     public void agregarVehiculoAsociado(Vehiculo vehiculo) {

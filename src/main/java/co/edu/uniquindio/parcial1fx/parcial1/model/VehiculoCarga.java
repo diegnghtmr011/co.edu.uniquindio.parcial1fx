@@ -10,9 +10,12 @@ public class VehiculoCarga extends Vehiculo {
                          String marca, String color,
                          Propietario propietarioAsociado,
                          Collection<Propietario> listaPropietariosAsociados,
-                         double capacidadCarga, int numeroEjes) {
+                         double capacidadCarga, int numeroEjes,
+                         EmpresaTransporte ownByEmpresaTransporte,
+                         String numeroChasis) {
         super(placa, modelo, marca, color,
-                propietarioAsociado, listaPropietariosAsociados);
+                propietarioAsociado, listaPropietariosAsociados,
+                ownByEmpresaTransporte, numeroChasis);
 
         this.capacidadCarga = capacidadCarga;
         this.numeroEjes = numeroEjes;
